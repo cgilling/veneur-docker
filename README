@@ -21,5 +21,5 @@ For more details on what these configuration parameters and how they affect vene
 
 ## Making Changes
 
-* Modify [config template](confd/conf.d/templates/config.yaml.tmpl)
-* Add new variables to [confd config](confd/conf.d/config/veneur.toml)
+* Modify [config template](confd/templates/config.yaml.tmpl)
+* Add new variables to [confd config](confd/conf.d/veneur.toml)
