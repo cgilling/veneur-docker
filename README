@@ -1,6 +1,25 @@
-# Veneur, in Docker
+# veneur-docker
 
+Make [venuer](https://github.com/stripe/veneur) dockerized.
 
+**NOTE**: this is a modified version of the fork, no current attempt has been made to pull these changes back in, though it may make sense in the future
 
-This repository provides a vanilla Dockerfile and sample systemd unit for running [Veneur](https://github.com/stripe/veneur). Veneur is a server implementation of the DogStatsD protocol for aggregating metrics and sending them to downstream storage.
+## Usage
 
+The Dockerfile has been made such that configuration can be provided using environment variables, which will then be used to populate the configuration file that is provided to `veneur`. This templating is done using [confd](https://github.com/kelseyhightower/confd)
+
+The currently supported environment variabled are:
+
+* `DD_API_KEY`: **required** The API key used to communicate with datadog
+* `STATS_ADDRESS`: defaults to `0.0.0.0:8125`
+* `UDP_ADDRESS`: defaults to `0.0.0.0:8126`
+* `HTTP_ADDRESS`: defaults to `0.0.0.0:8127`
+* `FORWARD_ADDRESS`: default is to not set
+* `TAGS`: a comma separated list of tags to be applied to all metrics
+
+For more details on what these configuration parameters and how they affect veneur, please see their [documentation](https://github.com/stripe/veneur#configuration).
+
+## Making Changes
+
+* Modify [config template](confd/conf.d/templates/config.yaml.tmpl)
+* Add new variables to [confd config](confd/conf.d/config/veneur.toml)

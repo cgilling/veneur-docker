@@ -2,8 +2,11 @@
 
 set -ex
 
-# This is in a separate file to allow injection of environment variables at runtime
+export STATS_ADDRESS=${STATS_ADDRESS:-"0.0.0.0:8125"}
+export UDP_ADDRESS=${UDP_ADDRESS:-"0.0.0.0:8126"}
+export HTTP_ADDRESS=${HTTP_ADDRESS:-"0.0.0.0:8127"}
+export FORWARD_ADDRESS=${FORWARD_ADDRESS:-""}
 
-sed -i "s/DATADOG_API_KEY/$DD_API_KEY/" /go/src/github.com/stripe/veneur/config.yaml
+/usr/bin/confd -onetime -backend env
 
 exec /build/veneur -f config.yaml

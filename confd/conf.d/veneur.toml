@@ -1,0 +1,11 @@
+[template]
+src = "config.yaml.tmpl"
+dest = "/go/src/github.com/stripe/veneur/config.yaml"
+keys = [
+  "/dd/api/key",
+  "/stats/address",
+  "/udp/address",
+  "/http/address",
+  "/forward/address",
+  "/tags"
+]
