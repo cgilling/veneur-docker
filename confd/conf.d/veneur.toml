@@ -7,5 +7,7 @@ keys = [
   "/udp/address",
   "/http/address",
   "/forward/address",
-  "/tags"
+  "/tags",
+  "/aggregates",
+  "/percentiles"
 ]
